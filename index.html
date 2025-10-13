@@ -6,327 +6,208 @@
     <title>David's Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>David</h2>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#career" class="nav-link">Career</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Home Section -->
-    <section id="home" class="section home-section">
-        <div class="container">
-            <div class="home-content">
-                <h1 class="home-title">Hello, I'm <span class="highlight">David</span></h1>
-                <p class="home-subtitle">Welcome to my digital space</p>
-                <p class="home-description">
-                    I'm a passionate professional with expertise in various fields. 
-                    This website showcases my journey, skills, and projects that define who I am.
-                </p>
-                <div class="home-buttons">
-                    <a href="#career" class="btn btn-primary">Explore My Career</a>
-                    <a href="#projects" class="btn btn-secondary">View Projects</a>
-                </div>
-            </div>
-            <div class="home-image">
-                <div class="profile-placeholder">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="100" cy="100" r="80" fill="#6366f1"/>
-                        <circle cx="100" cy="80" r="30" fill="white"/>
-                        <path d="M50 180 Q100 140 150 180" fill="white"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Career Section -->
-    <section id="career" class="section career-section">
-        <div class="container">
-            <h2 class="section-title">Career & Skills</h2>
-            <div class="career-grid">
-                <div class="skills-card">
-                    <h3>Technical Skills</h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Web Development</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Database Management</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="experience-card">
-                    <h3>Work Experience</h3>
-                    <div class="experience-timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2023 - Present</div>
-                            <div class="timeline-content">
-                                <h4>Senior Developer</h4>
-                                <p>Leading development teams and architecting scalable solutions</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2021 - 2023</div>
-                            <div class="timeline-content">
-                                <h4>Full Stack Developer</h4>
-                                <p>Developed web applications using modern technologies</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2020 - 2021</div>
-                            <div class="timeline-content">
-                                <h4>Junior Developer</h4>
-                                <p>Started my professional journey in software development</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
-        <div class="container">
-            <h2 class="section-title">Personal Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="60" fill="#6366f1"/>
-                                <rect x="20" y="20" width="60" height="20" fill="white"/>
-                                <rect x="20" y="45" width="40" height="10" fill="white"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>E-Commerce Platform</h3>
-                        <p>A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
+    <div class="page-container">
+        <div class="main-content-wrapper">
+            <header class="left-column">
+                <div>
+                    <h1 class="name">David</h1>
+                    <h2 class="title">Front End Engineer</h2>
+                    <p class="tagline">I build accessible, pixel-perfect digital experiences for the web.</p>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="40" fill="#10b981"/>
-                                <circle cx="50" cy="50" r="25" fill="white"/>
-                                <circle cx="50" cy="50" r="10" fill="#10b981"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>A productivity application for managing tasks and projects. Built with Vue.js and Firebase for real-time collaboration features.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">CSS3</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                </div>
+                <nav class="main-nav">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="#about" class="nav-link active">
+                                <span class="nav-indicator"></span>
+                                <span class="nav-text">ABOUT</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#career" class="nav-link">
+                                <span class="nav-indicator"></span>
+                                <span class="nav-text">CAREER</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#projects" class="nav-link">
+                                <span class="nav-indicator"></span>
+                                <span class="nav-text">PROJECTS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link">
+                                <span class="nav-indicator"></span>
+                                <span class="nav-text">CONTACT</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="80" fill="#f59e0b"/>
-                                <rect x="10" y="10" width="80" height="60" fill="white"/>
-                                <circle cx="50" cy="40" r="15" fill="#f59e0b"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Data Visualization Tool</h3>
-                        <p>Interactive dashboard for visualizing complex datasets. Built with D3.js and Python for data processing and analysis.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">D3.js</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <ul class="social-icons">
+                    <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                    <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="#" aria-label="Codepen"><i class="fab fa-codepen"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                </ul>
+            </header>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect</h3>
-                    <p>I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <span>david@example.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            <span>+1 (555) 123-4567</span>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            <span>San Francisco, CA</span>
+            <main class="right-column">
+                <section id="about" class="section">
+                    <h3 class="section-header">ABOUT</h3>
+                    <p>I'm a developer passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. My favorite work lies at the intersection of design and development, creating experiences that not only look great but are meticulously built for performance and usability.</p>
+                    <p>Currently, I'm a Senior Front-End Engineer at <span class="highlight">Klaviyo</span>, specializing in accessibility. I contribute to the creation and maintenance of UI components that power Klaviyo's frontend, ensuring our platform meets web accessibility standards and best practices to deliver an inclusive user experience.</p>
+                    <p>In the past, I've had the opportunity to develop software across a variety of settings — from <span class="highlight">advertising agencies</span> and <span class="highlight">large corporations</span> to <span class="highlight">start-ups</span> and <span class="highlight">small digital product studios</span>. Additionally, I also released a <span class="highlight">comprehensive video course</span> a few years ago, guiding learners through building a web app with the Spotify API.</p>
+                    <p>In my spare time, I'm usually climbing, playing tennis, hanging out with my wife and two cats, or running around Hyrule searching for <span class="highlight">Korok seeds</span>.</p>
+                </section>
+
+                <section id="career" class="section">
+                    <h3 class="section-header">CAREER</h3>
+                    <div class="experience-card">
+                        <div class="experience-date">2024 — PRESENT</div>
+                        <div class="experience-details">
+                            <h4 class="experience-title">Senior Frontend Engineer, Accessibility · <span class="experience-company">Klaviyo</span></h4>
+                            <p class="experience-description">Build and maintain critical components used to construct Klaviyo's frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Storybook</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
+                    
+                    <div class="experience-card">
+                        <div class="experience-date">2022 — 2024</div>
+                        <div class="experience-details">
+                            <h4 class="experience-title">Frontend Engineer · <span class="experience-company">Shopify</span></h4>
+                            <p class="experience-description">Developed and maintained user-facing features for Shopify's admin interface. Collaborated with design teams to implement responsive and accessible components using modern web technologies.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">GraphQL</span>
+                                <span class="tech-tag">Ruby on Rails</span>
+                                <span class="tech-tag">SCSS</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    
+                    <div class="experience-card">
+                        <div class="experience-date">2020 — 2022</div>
+                        <div class="experience-details">
+                            <h4 class="experience-title">Full Stack Developer · <span class="experience-company">TechStart Inc.</span></h4>
+                            <p class="experience-description">Built end-to-end web applications for various clients, focusing on performance optimization and user experience. Led a team of 3 developers and mentored junior team members.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">AWS</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                </section>
+
+                <section id="projects" class="section">
+                    <h3 class="section-header">PROJECTS</h3>
+                    <div class="experience-card">
+                        <div class="experience-date">2023</div>
+                        <div class="experience-details">
+                            <h4 class="experience-title">Accessible Component Library · <span class="experience-company">Personal</span></h4>
+                            <p class="experience-description">A comprehensive React component library built with accessibility in mind. Features WCAG 2.1 AA compliance, TypeScript support, and comprehensive documentation with Storybook.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Storybook</span>
+                                <span class="tech-tag">Jest</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="experience-date">2022</div>
+                        <div class="experience-details">
+                            <h4 class="experience-title">E-Commerce Dashboard · <span class="experience-company">Freelance</span></h4>
+                            <p class="experience-description">Built a responsive admin dashboard for a local retailer with real-time analytics, inventory management, and order tracking. Improved operational efficiency by 40%.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Chart.js</span>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="experience-date">2021</div>
+                        <div class="experience-details">
+                            <h4 class="experience-title">Spotify Web App Course · <span class="experience-company">Educational</span></h4>
+                            <p class="experience-description">Created a comprehensive video course teaching developers how to build a web application using the Spotify API. Course has over 10,000 enrolled students.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Spotify API</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="section">
+                    <h3 class="section-header">CONTACT</h3>
+                    <p>I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+                    <p>Email: <span class="highlight">david@example.com</span></p>
+                    <p>Phone: <span class="highlight">(123) 456-7890</span></p>
+                    <p>Location: <span class="highlight">San Francisco, CA</span></p>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" class="form-input">
+                        <input type="email" placeholder="Your Email" class="form-input">
+                        <textarea placeholder="Your Message" class="form-textarea"></textarea>
+                        <button type="submit" class="submit-button">Send Message</button>
                     </form>
-                </div>
-            </div>
+                </section>
+            </main>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 David. All rights reserved.</p>
-        </div>
-    </footer>
-
+    </div>
+    
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Active navigation highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.section');
+        document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
+            const sections = document.querySelectorAll('main section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
+                observer.observe(section);
             });
 
             navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
         });
     </script>
