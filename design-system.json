@@ -1,0 +1,214 @@
+{
+  "designSystem": {
+    "general": {
+      "theme": "dark",
+      "aesthetic": ["minimalist", "professional", "interactive"],
+      "scrollBehavior": "smooth"
+    },
+    "colors": {
+      "background": "#0a192f",
+      "primaryText": "#ccd6f6",
+      "secondaryText": "#8892b0",
+      "accent": "#64ffda",
+      "tagBackground": "rgba(17, 34, 64, 0.7)",
+      "cardHoverBackground": "rgba(17, 34, 64, 0.7)",
+      "linkDefault": "#8892b0",
+      "linkHoverActive": "#64ffda"
+    },
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "baseFontSize": "1rem",
+      "lineHeight": "1.7",
+      "name": {
+        "fontSize": "clamp(2.5rem, 8vw, 4rem)",
+        "fontWeight": "700",
+        "color": "var(--primary-text-color)"
+      },
+      "title": {
+        "fontSize": "clamp(1.5rem, 5vw, 2.5rem)",
+        "fontWeight": "400",
+        "color": "var(--secondary-text-color)"
+      },
+      "tagline": {
+        "fontSize": "1.125rem",
+        "fontWeight": "400",
+        "color": "var(--secondary-text-color)"
+      },
+      "sectionHeader": {
+        "fontSize": "1rem",
+        "fontWeight": "600",
+        "color": "var(--secondary-text-color)",
+        "letterSpacing": "0.1em",
+        "textTransform": "uppercase"
+      },
+      "bodyText": {
+        "fontSize": "1.125rem",
+        "fontWeight": "400",
+        "color": "var(--primary-text-color)"
+      },
+      "highlightedText": {
+        "fontWeight": "700",
+        "color": "var(--accent-color)"
+      },
+      "navigationLink": {
+        "fontSize": "1rem",
+        "fontWeight": "600",
+        "color": "var(--link-default-color)",
+        "activeColor": "var(--link-hover-active-color)",
+        "hoverColor": "var(--link-hover-active-color)"
+      },
+      "experienceDate": {
+        "fontSize": "0.875rem",
+        "fontWeight": "400",
+        "color": "var(--secondary-text-color)"
+      },
+      "experienceTitle": {
+        "fontSize": "1.25rem",
+        "fontWeight": "600",
+        "color": "var(--primary-text-color)"
+      },
+      "experienceCompany": {
+        "fontSize": "1.25rem",
+        "fontWeight": "600",
+        "color": "var(--accent-color)"
+      },
+      "techTag": {
+        "fontSize": "0.8rem",
+        "fontWeight": "400",
+        "color": "var(--accent-color)"
+      }
+    },
+    "layout": {
+      "pageContainer": {
+        "display": "flex",
+        "flexDirection": "column",
+        "minHeight": "100vh",
+        "backgroundColor": "var(--background-color)"
+      },
+      "mainContentWrapper": {
+        "display": "flex",
+        "flexDirection": "row",
+        "maxWidth": "1600px",
+        "margin": "0 auto",
+        "padding": "0 10vw",
+        "gap": "3rem",
+        "flexGrow": "1",
+        "responsiveBreakpoints": {
+          "medium": {
+            "flexDirection": "column",
+            "padding": "0 5vw",
+            "gap": "2rem"
+          }
+        }
+      },
+      "leftColumn": {
+        "flex": "0 0 40%",
+        "position": "sticky",
+        "top": "0",
+        "height": "100vh",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "space-between",
+        "paddingTop": "6rem",
+        "paddingBottom": "6rem",
+        "responsiveBreakpoints": {
+          "medium": {
+            "position": "relative",
+            "height": "auto",
+            "paddingTop": "2rem",
+            "paddingBottom": "0",
+            "flex": "none"
+          }
+        }
+      },
+      "rightColumn": {
+        "flex": "1",
+        "paddingTop": "6rem",
+        "paddingBottom": "6rem",
+        "responsiveBreakpoints": {
+          "medium": {
+            "paddingTop": "2rem",
+            "paddingBottom": "2rem"
+          }
+        }
+      },
+      "sectionSpacing": "4rem"
+    },
+    "components": {
+      "navigation": {
+        "listStyle": "none",
+        "itemSpacing": "1rem",
+        "link": {
+          "textDecoration": "none",
+          "paddingLeft": "1.5rem",
+          "position": "relative",
+          "transition": "all 0.3s ease",
+          "beforeElement": {
+            "content": "''",
+            "position": "absolute",
+            "left": "0",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+            "width": "0.5rem",
+            "height": "1px",
+            "backgroundColor": "var(--secondary-text-color)",
+            "transition": "all 0.3s ease"
+          }
+        },
+        "linkHover": {
+          "color": "var(--link-hover-active-color)",
+          "beforeElement": {
+            "width": "1rem",
+            "backgroundColor": "var(--link-hover-active-color)"
+          }
+        },
+        "linkActive": {
+          "color": "var(--link-hover-active-color)",
+          "beforeElement": {
+            "width": "1.5rem",
+            "backgroundColor": "var(--link-hover-active-color)"
+          }
+        }
+      },
+      "socialIcons": {
+        "listStyle": "none",
+        "display": "flex",
+        "gap": "1.5rem",
+        "iconSize": "1.5rem",
+        "color": "var(--secondary-text-color)",
+        "hoverColor": "var(--accent-color)",
+        "hoverTransform": "translateY(-3px)"
+      },
+      "experienceCard": {
+        "padding": "1.5rem",
+        "borderRadius": "0.5rem",
+        "backgroundColor": "transparent",
+        "transition": "all 0.3s ease",
+        "hover": {
+          "backgroundColor": "var(--card-hover-background)",
+          "boxShadow": "0 10px 30px -15px rgba(2,12,27,0.7)"
+        },
+        "display": "grid",
+        "gridTemplateColumns": "100px 1fr",
+        "gap": "1rem",
+        "marginBottom": "1.5rem",
+        "responsiveBreakpoints": {
+          "small": {
+            "gridTemplateColumns": "1fr"
+          }
+        }
+      },
+      "techTag": {
+        "display": "inline-flex",
+        "alignItems": "center",
+        "backgroundColor": "var(--tag-background-color)",
+        "color": "var(--accent-color)",
+        "padding": "0.25rem 0.75rem",
+        "borderRadius": "9999px",
+        "marginRight": "0.5rem",
+        "marginBottom": "0.5rem",
+        "fontSize": "var(--tech-tag-font-size)"
+      }
+    }
+  }
+}
