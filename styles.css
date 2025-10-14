@@ -168,6 +168,28 @@ body {
     margin-bottom: 0;
 }
 
+/* Profile Photo */
+.profile-image-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(100, 255, 218, 0.4);
+}
+
 .highlight {
     font-weight: 700;
     color: var(--accent-color);
