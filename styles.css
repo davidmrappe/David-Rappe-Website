@@ -414,6 +414,29 @@ html {
     scroll-padding-top: 0;
 }
 
+/* Project Images */
+.project-images {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.project-image {
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
 /* Additional responsive adjustments */
 @media (max-width: 480px) {
     .main-content-wrapper {
@@ -443,5 +466,14 @@ html {
     
     .contact-form {
         margin-top: 1.5rem;
+    }
+    
+    .project-images {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .project-image {
+        max-width: 100%;
     }
 }
