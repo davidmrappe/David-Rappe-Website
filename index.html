@@ -38,6 +38,25 @@
             overflow-x: hidden;
         }
 
+        /* Scroll Gear */
+        .scroll-gear {
+            position: fixed;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            color: var(--accent);
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.1s linear;
+            pointer-events: none;
+        }
+
+        .scroll-gear:hover {
+            opacity: 1;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -51,12 +70,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.75rem clamp(1rem, 5vw, 3rem);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--primary-text);
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
@@ -70,30 +99,26 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--accent);
         }
 
-        /* Single Gear in Top-Right */
-        .gear-container {
-            position: fixed;
-            top: 100px;
-            right: 30px;
-            width: 100px;
-            height: 100px;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .gear {
+        .nav-links a:hover::after {
             width: 100%;
-            height: 100%;
-            fill: var(--accent);
-            opacity: 0.7;
-            transform-origin: center center;
-            transition: transform 0.05s linear;
         }
 
         /* Hero Section */
@@ -106,11 +131,27 @@
             padding: clamp(1rem, 5vw, 3rem);
             padding-top: 100px;
             background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
         }
 
         .hero-content {
             flex: 1;
             max-width: 600px;
+            z-index: 1;
+            animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .hero-label {
@@ -120,6 +161,11 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 148, 0.1);
+            border-radius: 9999px;
+            border: 1px solid rgba(0, 255, 148, 0.2);
         }
 
         .hero-title {
@@ -131,7 +177,10 @@
         }
 
         .hero-name {
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
@@ -156,7 +205,7 @@
         }
 
         .btn-primary {
-            background-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #00d4ff);
             color: var(--background);
             padding: 1rem 2rem;
             border-radius: 1rem;
@@ -169,12 +218,12 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 255, 148, 0.2);
         }
 
         .btn-primary:hover {
-            background-color: #00e085;
             transform: translateY(-2px);
-            box-shadow: 0 0 24px rgba(0, 255, 148, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 255, 148, 0.3);
         }
 
         .btn-secondary {
@@ -209,11 +258,21 @@
             color: var(--secondary-text);
             font-size: 24px;
             transition: all 0.3s ease;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
         }
 
         .social-links a:hover {
             color: var(--accent);
             transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 24px rgba(0, 255, 148, 0.2);
+            border-color: var(--accent);
         }
 
         .hero-image {
@@ -222,15 +281,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .profile-photo {
-            width: clamp(350px, 50vw, 650px);
-            height: clamp(350px, 50vw, 650px);
+            width: clamp(300px, 40vw, 500px);
+            height: clamp(300px, 40vw, 500px);
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--accent);
-            box-shadow: 0 0 24px rgba(0, 255, 148, 0.3);
+            box-shadow: 0 0 40px rgba(0, 255, 148, 0.3);
+            animation: float 6s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
         }
 
         .stats {
@@ -244,12 +305,25 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            padding: 1.5rem;
+            background: var(--card-background);
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
         .stat-number {
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1;
         }
 
@@ -269,7 +343,7 @@
         .section-title {
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             text-align: center;
         }
 
@@ -290,7 +364,7 @@
         }
 
         .experience-card {
-            background-color: var(--card-background);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05), rgba(236, 72, 153, 0.05));
             border-radius: 1.5rem;
             padding: 2rem;
             border: 1px solid var(--border-color);
@@ -298,9 +372,10 @@
         }
 
         .experience-card:hover {
-            background-color: var(--card-hover-background);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
             transform: translateY(-8px);
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+            border-color: var(--accent);
         }
 
         .experience-icon {
@@ -313,6 +388,7 @@
             justify-content: center;
             font-size: 2rem;
             margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
         }
 
         .experience-date {
@@ -333,6 +409,7 @@
         .experience-company {
             color: var(--accent);
             font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         .experience-description {
@@ -392,6 +469,7 @@
             width: 100%;
             aspect-ratio: 16/9;
             object-fit: cover;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));
             filter: brightness(0.9);
             transition: filter 0.3s ease;
         }
@@ -455,13 +533,14 @@
             color: var(--primary-text);
             font-family: 'Space Mono', monospace;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .form-input:focus,
         .form-textarea:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 255, 148, 0.1);
         }
 
         .form-textarea {
@@ -479,6 +558,26 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 148, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 148, 0.4); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         /* Media Queries */
@@ -507,10 +606,6 @@
             .nav-links {
                 gap: 1rem;
             }
-
-            .gear-container {
-                display: none;
-            }
         }
 
         @media (max-width: 768px) {
@@ -524,21 +619,19 @@
             }
 
             .stats {
-                gap: 2rem;
+                gap: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Single Gear in Top-Right -->
-    <div class="gear-container">
-        <svg class="gear" viewBox="0 0 24 24" data-rotation="0">
-            <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-        </svg>
-    </div>
+    <!-- Scroll Gear -->
+    <svg class="scroll-gear" id="scrollGear" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+    </svg>
 
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="logo">David Rappe</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -552,12 +645,12 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-label">Mechanical Design Engineer</div>
-            <h1 class="hero-title">Hello, I'm<br><span class="hero-name" style="white-space: nowrap;">David Rappe</span></h1>
+            <h1 class="hero-title">Hello, I'm<br><span class="hero-name">David Rappe</span></h1>
             <p class="hero-subtitle">Designer of quality machines</p>
             <p class="hero-description">Mechanical engineer specializing in CAD design, GD&T, and continuous improvement. Creating historically accurate medieval crossbows and ancient jewelry using traditional techniques.</p>
             
             <div class="hero-buttons">
-                <a href="David Rappe - Mechanical Engineer Resume.pdf" download class="btn-primary">
+                <a href="#" class="btn-primary">
                     <i class="fas fa-download"></i>
                     Download Resume
                 </a>
@@ -585,7 +678,9 @@
         </div>
 
         <div class="hero-image">
-            <img src="prof.jpg" alt="David Rappe" class="profile-photo">
+            <div class="profile-photo" style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(236, 72, 153, 0.3)); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--accent);">
+                <i class="fas fa-user"></i>
+            </div>
         </div>
     </section>
 
@@ -652,7 +747,7 @@
 
         <div class="projects-grid">
             <div class="project-card fade-in">
-                <img src="portal-upright-1.jpg" alt="Portal Upright Design" class="project-image">
+                <div class="project-image"></div>
                 <div class="project-content">
                     <div class="project-date">2021</div>
                     <h3 class="project-title">Portal Uprights</h3>
@@ -668,7 +763,7 @@
             </div>
 
             <div class="project-card fade-in">
-                <img src="watermelon.jpg" alt="Medieval Crossbow" class="project-image">
+                <div class="project-image"></div>
                 <div class="project-content">
                     <div class="project-date">2024</div>
                     <h3 class="project-title">Medieval Crossbow</h3>
@@ -682,7 +777,7 @@
             </div>
 
             <div class="project-card fade-in">
-                <img src="finish.jpg" alt="Ancient Greek Necklace" class="project-image">
+                <div class="project-image"></div>
                 <div class="project-content">
                     <div class="project-date">2025</div>
                     <h3 class="project-title">Ancient Greek Necklace</h3>
@@ -708,40 +803,38 @@
                 <input type="text" name="name" placeholder="Your Name" class="form-input" required>
                 <input type="email" name="email" placeholder="Your Email" class="form-input" required>
                 <textarea name="message" placeholder="Your Message" class="form-textarea" required></textarea>
-                <button type="submit" class="btn-primary">Send Message</button>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
             </form>
         </div>
     </section>
 
     <script>
-        // Scroll-based gear rotation
+        // Scroll gear rotation
         let lastScrollTop = 0;
-        let isScrolling = false;
-        let scrollTimeout;
+        const scrollGear = document.getElementById('scrollGear');
+        let rotation = 0;
 
-        window.addEventListener('scroll', function() {
-            isScrolling = true;
-            clearTimeout(scrollTimeout);
-
+        window.addEventListener('scroll', () => {
             const st = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollVelocity = st - lastScrollTop;
+            const scrollDiff = st - lastScrollTop;
+            
+            // Rotate gear based on scroll distance
+            rotation += scrollDiff * 0.5;
+            scrollGear.style.transform = `translateY(-50%) rotate(${rotation}deg)`;
+            
             lastScrollTop = st <= 0 ? 0 : st;
 
-            // Rotate the gear based on scroll
-            const gear = document.querySelector('.gear');
-            if (gear) {
-                const currentRotation = parseFloat(gear.getAttribute('data-rotation')) || 0;
-                const newRotation = currentRotation + (scrollVelocity * 0.5);
-                
-                gear.setAttribute('data-rotation', newRotation);
-                gear.style.transform = `rotate(${newRotation}deg)`;
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
-
-            // Set timeout to stop rotation
-            scrollTimeout = setTimeout(function() {
-                isScrolling = false;
-            }, 150);
-        }, false);
+        });
 
         // Scroll animations
         const observerOptions = {
@@ -786,7 +879,10 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
+    </script>
+</body>
+</html>
