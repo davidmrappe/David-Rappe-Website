@@ -76,6 +76,148 @@
             color: var(--accent);
         }
 
+        /* Mechanical decorations */
+        .machine-left, .machine-right {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .machine-left {
+            left: 2rem;
+            top: 200px;
+            width: 150px;
+            height: 600px;
+        }
+
+        .machine-right {
+            right: 2rem;
+            top: 200px;
+            width: 150px;
+            height: 600px;
+        }
+
+        .machine-component {
+            position: absolute;
+            color: var(--accent);
+        }
+
+        .gear-machine {
+            width: 80px;
+            height: 80px;
+        }
+
+        .gear-machine svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+            animation: rotate 6s linear infinite;
+        }
+
+        .gear-machine.reverse svg {
+            animation-direction: reverse;
+            animation-duration: 4s;
+        }
+
+        .gear-machine.slow svg {
+            animation-duration: 8s;
+        }
+
+        .pulley {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pulley svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            animation: rotate 8s linear infinite;
+        }
+
+        .pulley::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25px;
+            height: 25px;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .piston {
+            width: 50px;
+            height: 100px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .piston-head {
+            width: 50px;
+            height: 35px;
+            background-color: var(--accent);
+            border-radius: 6px;
+            position: relative;
+            animation: piston 2s ease-in-out infinite;
+        }
+
+        .piston-rod {
+            width: 10px;
+            height: 65px;
+            background-color: var(--accent);
+            margin-top: -5px;
+        }
+
+        .piston-base {
+            width: 60px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 4px;
+        }
+
+        .connecting-line {
+            position: absolute;
+            width: 2px;
+            background-color: var(--accent);
+            opacity: 0.4;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes piston {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(20px); }
+        }
+
+        /* Position components in left machine */
+        .machine-left .gear-machine:nth-child(1) { top: 0; left: 35px; }
+        .machine-left .line1 { top: 80px; left: 73px; height: 40px; }
+        .machine-left .piston:nth-child(3) { top: 120px; left: 50px; }
+        .machine-left .line2 { top: 240px; left: 35px; width: 80px; height: 2px; transform: rotate(45deg); transform-origin: left; }
+        .machine-left .gear-machine:nth-child(5) { top: 280px; left: 70px; }
+        .machine-left .line3 { top: 360px; left: 108px; height: 60px; }
+        .machine-left .pulley:nth-child(7) { top: 420px; left: 45px; }
+
+        /* Position components in right machine */
+        .machine-right .pulley:nth-child(1) { top: 0; right: 45px; }
+        .machine-right .line1 { top: 70px; right: 73px; height: 50px; }
+        .machine-right .gear-machine:nth-child(3) { top: 120px; right: 35px; }
+        .machine-right .line2 { top: 210px; right: 73px; height: 70px; }
+        .machine-right .piston:nth-child(5) { top: 280px; right: 50px; }
+        .machine-right .line3 { top: 400px; right: 35px; width: 80px; height: 2px; }
+        .machine-right .gear-machine:nth-child(7) { top: 450px; right: 0; }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -86,6 +228,7 @@
             padding: clamp(1rem, 5vw, 3rem);
             padding-top: 100px;
             background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 50%);
+            position: relative;
         }
 
         .hero-content {
@@ -197,7 +340,11 @@
         }
 
         .hero-image {
-            flex: 0 0 auto;
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-photo {
@@ -209,50 +356,12 @@
             box-shadow: 0 0 24px rgba(0, 255, 148, 0.3);
         }
 
-        .hero-image {
-            position: relative;
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .gears-container {
-            position: absolute;
-            bottom: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 4rem;
-            justify-content: center;
-        }
-
-        .gear {
-            width: 100px;
-            height: 100px;
-            color: var(--accent);
-            animation: rotate 4s linear infinite;
-        }
-
-        .gear:nth-child(2) {
-            animation-direction: reverse;
-            animation-duration: 3s;
-        }
-
-        .gear:nth-child(3) {
-            animation-duration: 5s;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .stats {
             display: flex;
             gap: 3rem;
             margin-top: 3rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .stat {
@@ -279,6 +388,7 @@
             padding: 8rem clamp(1rem, 5vw, 3rem);
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
         }
 
         .section-title {
@@ -541,6 +651,10 @@
             .nav-links {
                 gap: 1rem;
             }
+
+            .machine-left, .machine-right {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -562,7 +676,7 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">Rappe</div>
+        <div class="logo">David Rappe</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#career">Career</a></li>
@@ -573,6 +687,27 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Left Machine -->
+        <div class="machine-left">
+            <div class="machine-component gear-machine slow">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                </svg>
+            </div>
+            <div class="machine-component connecting-line line1"></div>
+            <div class="machine-component piston">
+                <div class="piston-head"></div>
+                <div class="piston-rod"></div>
+                <div class="piston-base"></div>
+            </div>
+            <div class="machine-component connecting-line line2"></div>
+            <div class="machine-component gear-machine reverse">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                </svg>
+            </div>
+        </div>
+
         <div class="hero-content">
             <div class="hero-label">Mechanical Design Engineer</div>
             <h1 class="hero-title">Hello, I'm<br><span class="hero-name" style="white-space: nowrap;">David Rappe</span></h1>
@@ -609,17 +744,6 @@
 
         <div class="hero-image">
             <img src="prof.jpg" alt="David Rappe" class="profile-photo">
-            <div class="gears-container">
-                <svg class="gear" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-                </svg>
-                <svg class="gear" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-                </svg>
-                <svg class="gear" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-                </svg>
-            </div>
         </div>
     </section>
 
@@ -797,4 +921,29 @@
         });
     </script>
 </body>
-</html>
+</html>0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                </svg>
+            </div>
+            <div class="machine-component connecting-line line3"></div>
+            <div class="machine-component pulley"></div>
+        </div>
+
+        <!-- Right Machine -->
+        <div class="machine-right">
+            <div class="machine-component pulley"></div>
+            <div class="machine-component connecting-line line1"></div>
+            <div class="machine-component gear-machine">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                </svg>
+            </div>
+            <div class="machine-component connecting-line line2"></div>
+            <div class="machine-component piston">
+                <div class="piston-head"></div>
+                <div class="piston-rod"></div>
+                <div class="piston-base"></div>
+            </div>
+            <div class="machine-component connecting-line line3"></div>
+            <div class="machine-component gear-machine reverse">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5
