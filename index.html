@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Rappe - Mechanical Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -18,452 +18,426 @@
         }
 
         :root {
-            --background-color: #0a192f;
-            --primary-text-color: #ccd6f6;
-            --secondary-text-color: #8892b0;
-            --accent-color: #64ffda;
-            --tag-background-color: rgba(17, 34, 64, 0.7);
-            --card-hover-background: rgba(17, 34, 64, 0.7);
-            --link-default-color: #8892b0;
-            --link-hover-active-color: #64ffda;
-            --font-family: 'Inter', sans-serif;
-            --base-font-size: 1rem;
-            --line-height: 1.7;
-        }
-
-        [data-theme="light"] {
-            --background-color: #f8f9fa;
-            --primary-text-color: #1a202c;
-            --secondary-text-color: #4a5568;
-            --accent-color: #0891b2;
-            --tag-background-color: rgba(226, 232, 240, 0.8);
-            --card-hover-background: rgba(226, 232, 240, 0.6);
-            --link-default-color: #4a5568;
-            --link-hover-active-color: #0891b2;
+            --background: #1a1a1f;
+            --background-secondary: #25252d;
+            --primary-text: #ffffff;
+            --secondary-text: #a8a8b3;
+            --accent: #00ff94;
+            --accent-secondary: #7c3aed;
+            --accent-tertiary: #ec4899;
+            --card-background: #1f1f28;
+            --card-hover-background: #2a2a35;
+            --border-color: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            font-family: var(--font-family);
-            line-height: var(--line-height);
-            color: var(--primary-text-color);
-            background-color: var(--background-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--background);
+            color: var(--primary-text);
+            line-height: 1.6;
             overflow-x: hidden;
-            font-size: var(--base-font-size);
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .loading-screen {
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background-color: var(--background-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--secondary-text-color);
-            border-top-color: var(--accent-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .skeleton {
-            background: linear-gradient(90deg, var(--tag-background-color) 25%, var(--card-hover-background) 50%, var(--tag-background-color) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        img.loading {
-            opacity: 0;
-        }
-
-        img.loaded {
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .theme-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--background-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            background-color: rgba(26, 26, 31, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem clamp(1rem, 5vw, 3rem);
             z-index: 1000;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(20deg);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .page-container {
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            opacity: 0;
-            animation: pageLoad 0.8s ease 0.3s forwards;
-        }
-
-        @keyframes pageLoad {
-            to { opacity: 1; }
-        }
-
-        .main-content-wrapper {
-            display: flex;
-            flex-direction: row;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 10vw;
-            gap: 3rem;
-            flex-grow: 1;
-        }
-
-        .left-column {
-            flex: 0 0 40%;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
-
-        .right-column {
-            flex: 1;
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 1024px) {
-            .main-content-wrapper {
-                flex-direction: column;
-                padding: 0 5vw;
-                gap: 2rem;
-            }
-
-            .left-column {
-                position: relative;
-                height: auto;
-                padding-top: 2rem;
-                padding-bottom: 0;
-                flex: none;
-            }
-
-            .right-column {
-                padding-top: 2rem;
-                padding-bottom: 2rem;
-            }
-
-            .theme-toggle {
-                bottom: 1rem;
-                right: 1rem;
-                width: 45px;
-                height: 45px;
-                font-size: 1.25rem;
-            }
-        }
-
-        .name {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 700;
-            color: var(--primary-text-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .title {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            font-weight: 400;
-            color: var(--secondary-text-color);
-            margin-bottom: 1rem;
-        }
-
-        .tagline {
-            font-size: 1.125rem;
-            font-weight: 400;
-            color: var(--secondary-text-color);
-            margin-bottom: 2rem;
-        }
-
-        .section-header {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--secondary-text-color);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            position: sticky;
-            top: 0;
-            background-color: var(--background-color);
-            z-index: 10;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-
-        .section p {
-            font-size: 1.125rem;
-            font-weight: 400;
-            color: var(--primary-text-color);
-            margin-bottom: 1rem;
-        }
-
-        .profile-image-container {
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .profile-photo {
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: var(--tag-background-color);
-        }
-
-        .profile-photo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(100, 255, 218, 0.4);
-        }
-
-        .highlight {
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .resume-button {
-            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-            border-radius: 0.3rem;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
         }
 
-        .resume-button:hover {
-            background-color: var(--accent-color);
-            color: var(--background-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-text);
         }
 
-        .main-nav {
-            margin-bottom: 3rem;
-        }
-
-        .nav-menu {
+        .nav-links {
+            display: flex;
+            gap: 2rem;
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
         }
 
-        .nav-link {
+        .nav-links a {
+            color: var(--secondary-text);
             text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--link-default-color);
-            padding-left: 1.5rem;
-            position: relative;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .nav-indicator {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0.5rem;
-            height: 1px;
-            background-color: var(--secondary-text-color);
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover .nav-indicator {
-            width: 1rem;
-            background-color: var(--link-hover-active-color);
-        }
-
-        .nav-link:hover .nav-text {
-            color: var(--link-hover-active-color);
-        }
-
-        .nav-link.active .nav-indicator {
-            width: 1.5rem;
-            background-color: var(--link-hover-active-color);
-        }
-
-        .nav-link.active .nav-text {
-            color: var(--link-hover-active-color);
-        }
-
-        .nav-text {
+            font-weight: 500;
             transition: color 0.3s ease;
         }
 
-        .social-icons {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            margin-top: auto;
+        .nav-links a:hover {
+            color: var(--accent);
         }
 
-        .social-icons a {
-            color: var(--secondary-text-color);
-            font-size: 1.5rem;
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            padding: clamp(1rem, 5vw, 3rem);
+            padding-top: 100px;
+            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 50%);
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-name {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            font-weight: 400;
+            color: var(--secondary-text);
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--secondary-text);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--background);
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             transition: all 0.3s ease;
         }
 
-        .social-icons a:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
+        .btn-primary:hover {
+            background-color: #00e085;
+            transform: translateY(-2px);
+            box-shadow: 0 0 24px rgba(0, 255, 148, 0.3);
         }
 
-        .section {
-            margin-bottom: 4rem;
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--background);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--secondary-text);
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .hero-image {
+            flex: 0 0 auto;
+        }
+
+        .profile-photo {
+            width: clamp(250px, 40vw, 500px);
+            height: clamp(250px, 40vw, 500px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 24px rgba(0, 255, 148, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-top: 0.5rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem clamp(1rem, 5vw, 3rem);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--secondary-text);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
         }
 
         .experience-card {
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            background-color: transparent;
-            transition: all 0.3s ease;
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            background-color: var(--card-background);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .experience-card:hover {
             background-color: var(--card-hover-background);
-            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
-            transform: translateY(-2px);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+        }
+
+        .experience-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .experience-date {
             font-size: 0.875rem;
-            font-weight: 400;
-            color: var(--secondary-text-color);
-            grid-column: 1 / 2;
-            padding-top: 0.25rem;
-        }
-
-        .experience-details {
-            grid-column: 2 / 3;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
         }
 
         .experience-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--primary-text-color);
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .experience-company {
-            color: var(--accent-color);
+            color: var(--accent);
+            font-weight: 600;
         }
 
         .experience-description {
-            font-size: 1.125rem;
-            color: var(--secondary-text-color);
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--secondary-text);
+            line-height: 1.7;
+            margin: 1rem 0;
         }
 
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 0.5rem;
+            margin-top: 1.5rem;
         }
 
         .tech-tag {
             display: inline-flex;
             align-items: center;
-            background-color: var(--tag-background-color);
-            color: var(--accent-color);
-            padding: 0.25rem 0.75rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 255, 148, 0.1);
+            border: 1px solid rgba(0, 255, 148, 0.2);
             border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 400;
-            transition: transform 0.2s ease;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+            transition: all 0.2s ease;
         }
 
         .tech-tag:hover {
-            transform: translateY(-2px);
+            background-color: rgba(0, 255, 148, 0.2);
+            transform: scale(1.05);
         }
 
-        @media (max-width: 768px) {
-            .experience-card {
-                grid-template-columns: 1fr;
-            }
-            .experience-date {
-                grid-column: 1 / 2;
-                margin-bottom: 0.5rem;
-            }
-            .experience-details {
-                grid-column: 1 / 2;
-            }
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+            border-color: var(--accent);
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: filter 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            filter: brightness(1);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-date {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            background-color: var(--card-background);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .contact-info p {
+            font-size: 1.125rem;
+            color: var(--secondary-text);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info .highlight {
+            color: var(--accent);
+            font-weight: 600;
         }
 
         .contact-form {
@@ -475,515 +449,266 @@
 
         .form-input,
         .form-textarea {
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--secondary-text-color);
-            border-radius: 0.3rem;
-            background-color: var(--tag-background-color);
-            color: var(--primary-text-color);
-            font-family: var(--font-family);
-            font-size: 1.125rem;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            background-color: var(--card-background);
+            color: var(--primary-text);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
             transition: border-color 0.3s ease;
         }
 
         .form-input:focus,
         .form-textarea:focus {
             outline: none;
-            border-color: var(--accent-color);
+            border-color: var(--accent);
         }
 
         .form-textarea {
-            min-height: 120px;
+            min-height: 150px;
             resize: vertical;
         }
 
-        .submit-button {
-            padding: 0.8rem 1.5rem;
-            background-color: var(--accent-color);
-            color: var(--background-color);
-            border: none;
-            border-radius: 0.3rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            align-self: flex-start;
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .submit-button:hover {
-            background-color: var(--link-hover-active-color);
-            transform: translateY(-2px);
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .form-message {
-            padding: 1rem;
-            border-radius: 0.3rem;
-            margin-top: 1rem;
-            display: none;
-        }
-
-        .form-message.success {
-            background-color: rgba(100, 255, 218, 0.1);
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .project-images {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            width: 100%;
-        }
-
-        .project-image {
-            flex: 1;
-            max-width: 50%;
-            height: auto;
-            border-radius: 0.5rem;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: var(--tag-background-color);
-            cursor: pointer;
-        }
-
-        .project-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .project-video {
-            margin: 1rem 0;
-            width: 100%;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-video video {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 0.5rem;
-        }
-
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            padding: 2rem;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .lightbox-close:hover {
-            transform: scale(1.2);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            padding: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 0.3rem;
-        }
-
-        .lightbox-nav:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .lightbox-prev {
-            left: 1rem;
-        }
-
-        .lightbox-next {
-            right: 1rem;
-        }
-
-        @media (max-width: 480px) {
-            .main-content-wrapper {
-                padding: 0 2rem;
-            }
-            
-            .left-column {
-                padding-top: 1rem;
-            }
-            
-            .right-column {
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-            
-            .social-icons {
-                gap: 1rem;
-            }
-            
-            .social-icons a {
-                font-size: 1.25rem;
-            }
-            
-            .experience-card {
-                padding: 1rem;
-            }
-            
-            .contact-form {
-                margin-top: 1.5rem;
-            }
-            
-            .project-images {
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .hero {
                 flex-direction: column;
-                gap: 0.5rem;
+                text-align: center;
             }
-            
-            .project-image {
+
+            .hero-content {
                 max-width: 100%;
             }
 
-            .lightbox-nav {
-                padding: 0.5rem;
-                font-size: 1.5rem;
+            .hero-buttons {
+                justify-content: center;
             }
 
-            .lightbox-prev {
-                left: 0.5rem;
+            .stats {
+                justify-content: center;
             }
 
-            .lightbox-next {
-                right: 0.5rem;
+            .social-links {
+                justify-content: center;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                gap: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loader"></div>
-    </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Rappe</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#career">Career</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-label">Mechanical Design Engineer</div>
+            <h1 class="hero-title">Hello I'm<br><span class="hero-name">David Rappe</span></h1>
+            <p class="hero-subtitle">Designer of quality machines</p>
+            <p class="hero-description">Mechanical engineer specializing in CAD design, GD&T, and continuous improvement. Creating historically accurate medieval crossbows and ancient jewelry using traditional techniques.</p>
+            
+            <div class="hero-buttons">
+                <a href="David Rappe - Mechanical Engineer Resume.pdf" download class="btn-primary">
+                    <i class="fas fa-download"></i>
+                    Download Resume
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    Get In Touch
+                </a>
+            </div>
 
-    <div class="page-container">
-        <div class="main-content-wrapper">
-            <header class="left-column">
-                <div>
-                    <h1 class="name">David Rappe</h1>
-                    <h2 class="title">Mechanical Design Engineer</h2>
-                    <p class="tagline">Designer of quality machines</p>
+            <div class="social-links">
+                <a href="https://github.com/grumplegrishkin" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/david-rappe-98355920b" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/david_rappe/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Years Experience</div>
                 </div>
-
-                <nav class="main-nav">
-                    <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="#about" class="nav-link active">
-                                <span class="nav-indicator"></span>
-                                <span class="nav-text">HOME</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#career" class="nav-link">
-                                <span class="nav-indicator"></span>
-                                <span class="nav-text">CAREER</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#projects" class="nav-link">
-                                <span class="nav-indicator"></span>
-                                <span class="nav-text">PROJECTS</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#contact" class="nav-link">
-                                <span class="nav-indicator"></span>
-                                <span class="nav-text">GET IN TOUCH</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <ul class="social-icons">
-                    <li><a href="https://github.com/grumplegrishkin" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/david-rappe-98355920b" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="https://www.instagram.com/david_rappe/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-            </header>
-
-            <main class="right-column">
-                <section id="about" class="section fade-in">
-                    <div class="profile-image-container">
-                        <img src="profile-photo.jpg" alt="David Rappe - Mechanical Design Engineer" class="profile-photo loading skeleton">
-                    </div>
-                    <p>My name is David, and I'm a mechanical engineer. I have a workshop where I create replicas of medieval crossbows using historical materials, as well as replicas of ancient jewelry using historical techniques.</p>
-                    <p>I currently work at Daimler Truck North America as a mechanical design engineer, where I create part drawings and technical specifications using CAD; I also manage the DTNA mechanical parts database. My work experience and projects are shown in detail below.</p>
-                </section>
-
-                <section id="career" class="section">
-                    <h3 class="section-header">CAREER</h3>
-                    <div class="experience-card fade-in">
-                        <div class="experience-date">2024 — PRESENT</div>
-                        <div class="experience-details">
-                            <h4 class="experience-title">Mechanical Design Engineer · <span class="experience-company">Daimler Truck North America</span></h4>
-                            <p class="experience-description">Use GD&T and CAD to create technical specifications and drawings for mechanical parts while coordinating cross-functional teams of engineers and suppliers. Manage DTNA parts database for small parts optimization; consolidation of parts to reduce cost and increase design efficiency. Lead continuous improvement by creating standard work instructions and teaching software use.</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">GD&T</span>
-                                <span class="tech-tag">CAD</span>
-                                <span class="tech-tag">Technical Specifications</span>
-                                <span class="tech-tag">Continuous Improvement</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-card fade-in">
-                        <div class="experience-date">2022 — 2024</div>
-                        <div class="experience-details">
-                            <h4 class="experience-title">Quality Engineer · <span class="experience-company">Daimler Truck North America</span></h4>
-                            <p class="experience-description">Reviewed electric vehicles, autonomous trucks, cameras and sensors, and other electrical hardware for safety and manufacturability. Manufacturing plant and prototype lab experience. PFMEA (process failure modes and effects analysis) expert. Responsibilities included pioneering, learning, using, and training others in APIS software, as well as owning meetings with a cross-functional team. Managed simultaneous projects using MS Teams, cPlace, and SharePoint. Reviewed and maintained quality in a cross-functional team, systematically tracking progress.</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Lean</span>
-                                <span class="tech-tag">PFMEA</span>
-                                <span class="tech-tag">Six Sigma</span>
-                                <span class="tech-tag">Quality</span>
-                                <span class="tech-tag">APIS</span>
-                                <span class="tech-tag">Software Mentoring</span>
-                                <span class="tech-tag">Manufacturing</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-card fade-in">
-                        <div class="experience-date">2020 — 2020</div>
-                        <div class="experience-details">
-                            <h4 class="experience-title">Contractor · <span class="experience-company">Knowmadics Inc</span></h4>
-                            <p class="experience-description">Supported training activities for Army and Navy Special Operations units. Cannot detail; signed NDA.</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Military</span>
-                                <span class="tech-tag">Contracting</span>
-                                <span class="tech-tag">NDA</span>
-                                <span class="tech-tag">Training</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="projects" class="section">
-                    <h3 class="section-header">PROJECTS</h3>
-                    <div class="experience-card fade-in">
-                        <div class="experience-date">2021</div>
-                        <div class="experience-details">
-                            <h4 class="experience-title">Portal Uprights · <span class="experience-company">OSU Baja</span></h4>
-                            <p class="experience-description">Designed portal uprights for the OSU Baja off-road car, modeled with SolidWorks and Siemens NX. Performed FEA and FMEAs to choose the most efficient materials and finalize a robust design. Programmed CAM with Siemens NX to manufacture portal uprights with CNC and VMC.</p>
-                            <div class="project-images">
-                                <img src="portal-upright-1.jpg" alt="Portal upright CAD model with gear train" class="project-image loading skeleton" data-lightbox="true">
-                                <img src="portal-upright-2.jpg" alt="Portal upright assembly with brake rotor and hub" class="project-image loading skeleton" data-lightbox="true">
-                            </div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">SolidWorks</span>
-                                <span class="tech-tag">Siemens NX</span>
-                                <span class="tech-tag">FEA</span>
-                                <span class="tech-tag">FMEA</span>
-                                <span class="tech-tag">CAM</span>
-                                <span class="tech-tag">CNC</span>
-                                <span class="tech-tag">VMC</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-card fade-in">
-                        <div class="experience-date">2024</div>
-                        <div class="experience-details">
-                            <h4 class="experience-title">Medieval Crossbow · <span class="experience-company">Personal Project</span></h4>
-                            <p class="experience-description">Created this historically accurate medieval crossbow in my garage using carpentry skills. Planed down ash wood for the bow, then made a bowstring with linen and beeswax. Lashed the bow to the stock with rope. The bow shoots accurately up to about 50 yards, penetrating plywood after that distance. It has not been tested beyond that, due to a lack of proper space.</p>
-                            <div class="project-video">
-                                <video controls preload="metadata">
-                                    <source src="crossbow.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <div class="project-video">
-                                <img src="watermelon.jpg" alt="Crossbow demonstration with watermelon" style="width: 100%; height: auto; display: block; border-radius: 0.5rem;">
-                            </div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Carpentry</span>
-                                <span class="tech-tag">Historical Crafting</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-card fade-in">
-                        <div class="experience-date">2020</div>
-                        <div class="experience-details">
-                            <h4 class="experience-title">Mechatronic Cat Toy · <span class="experience-company">Personal Project</span></h4>
-                            <p class="experience-description">Built robotic, automatic cat toy with three settings. Programmed Arduino controller and built a custom circuit.</p>
-                            <div class="project-video">
-                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/5GmJx5M2e9E" title="Mechatronic Cat Toy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 0.5rem;"></iframe>
-                            </div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Arduino</span>
-                                <span class="tech-tag">Circuit Design</span>
-                                <span class="tech-tag">Robotics</span>
-                                <span class="tech-tag">Programming</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-card fade-in">
-                        <div class="experience-date">2025</div>
-                        <div class="experience-details">
-                            <h4 class="experience-title">Ancient Greek Necklace · <span class="experience-company">Personal Project</span></h4>
-                            <p class="experience-description">Created an historically accurate ancient Greek necklace, using the same methods that they did. I started with wire, which I wrapped around a dowel. I then cut the wire, creating small, open rings of silver. Then, I fused each link individually with a propane torch. I then wove each of these rings individually into the necklace. The necklace has over one-thousand links, each individually formed, annealed, and quenched in acid to change the crystalline structure and soften/whiten the material.</p>
-                            <div class="project-images">
-                                <img src="start.jpg" alt="Ancient Greek necklace - starting materials" class="project-image loading skeleton" data-lightbox="true" style="max-width: 33.33%; flex: 1;">
-                                <img src="work.jpg" alt="Ancient Greek necklace - work in progress" class="project-image loading skeleton" data-lightbox="true" style="max-width: 33.33%; flex: 1;">
-                                <img src="finish.jpg" alt="Ancient Greek necklace - finished piece" class="project-image loading skeleton" data-lightbox="true" style="max-width: 33.33%; flex: 1;">
-                            </div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Metalworking</span>
-                                <span class="tech-tag">Blow Torch</span>
-                                <span class="tech-tag">Metallurgy</span>
-                                <span class="tech-tag">Historical Crafting</span>
-                                <span class="tech-tag">Jewelry Making</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="contact" class="section">
-                    <h3 class="section-header">GET IN TOUCH</h3>
-                    <a href="David Rappe - Mechanical Engineer Resume.pdf" download class="resume-button">
-                        <i class="fas fa-download"></i>
-                        Download Resume
-                    </a>
-                    <p>Contact me for collaborations and opportunities. Don't be afraid to reach out.</p>
-                    <p>Location: <span class="highlight">Portland, OR</span></p>
-                    <form class="contact-form" id="contactForm">
-                        <input type="text" name="name" placeholder="Your Name" class="form-input" required>
-                        <input type="email" name="email" placeholder="Your Email" class="form-input" required>
-                        <textarea name="message" placeholder="Your Message" class="form-textarea" required></textarea>
-                        <button type="submit" class="submit-button">Send Message</button>
-                        <div class="form-message" id="formMessage"></div>
-                    </form>
-                </section>
-            </main>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">
-                <i class="fas fa-times"></i>
-            </button>
-            <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <img src="" alt="" class="lightbox-image" id="lightboxImage">
-            <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+        <div class="hero-image">
+            <img src="profile-photo.jpg" alt="David Rappe" class="profile-photo">
         </div>
-    </div>
-    
+    </section>
+
+    <!-- Career Section -->
+    <section id="career">
+        <h2 class="section-title">My <span style="color: var(--accent);">Experience</span></h2>
+        <p class="section-subtitle">A journey through mechanical engineering, quality assurance, and continuous improvement across leading organizations.</p>
+
+        <div class="experience-grid">
+            <div class="experience-card fade-in">
+                <div class="experience-icon">
+                    <i class="fas fa-drafting-compass"></i>
+                </div>
+                <div class="experience-date">2024 — Present</div>
+                <h3 class="experience-title">Mechanical Design Engineer</h3>
+                <p class="experience-company">Daimler Truck North America</p>
+                <p class="experience-description">Use GD&T and CAD to create technical specifications and drawings for mechanical parts while coordinating cross-functional teams of engineers and suppliers. Manage DTNA parts database for small parts optimization; consolidation of parts to reduce cost and increase design efficiency.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">GD&T</span>
+                    <span class="tech-tag">CAD</span>
+                    <span class="tech-tag">Technical Specifications</span>
+                    <span class="tech-tag">Continuous Improvement</span>
+                </div>
+            </div>
+
+            <div class="experience-card fade-in">
+                <div class="experience-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="experience-date">2022 — 2024</div>
+                <h3 class="experience-title">Quality Engineer</h3>
+                <p class="experience-company">Daimler Truck North America</p>
+                <p class="experience-description">Reviewed electric vehicles, autonomous trucks, cameras and sensors, and other electrical hardware for safety and manufacturability. PFMEA expert. Pioneered APIS software usage and training. Managed simultaneous projects using MS Teams, cPlace, and SharePoint.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Lean</span>
+                    <span class="tech-tag">PFMEA</span>
+                    <span class="tech-tag">Six Sigma</span>
+                    <span class="tech-tag">Quality</span>
+                    <span class="tech-tag">APIS</span>
+                </div>
+            </div>
+
+            <div class="experience-card fade-in">
+                <div class="experience-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="experience-date">2020 — 2020</div>
+                <h3 class="experience-title">Contractor</h3>
+                <p class="experience-company">Knowmadics Inc</p>
+                <p class="experience-description">Supported training activities for Army and Navy Special Operations units. Cannot detail; signed NDA.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Military</span>
+                    <span class="tech-tag">Contracting</span>
+                    <span class="tech-tag">Training</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured <span style="color: var(--accent);">Projects</span></h2>
+        <p class="section-subtitle">A selection of recent mechanical engineering and personal crafting projects showcasing technical expertise and historical accuracy.</p>
+
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <img src="portal-upright-1.jpg" alt="Portal Upright Design" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">2021</div>
+                    <h3 class="project-title">Portal Uprights</h3>
+                    <p class="project-subtitle">OSU Baja</p>
+                    <p class="project-description">Designed portal uprights for the OSU Baja off-road car, modeled with SolidWorks and Siemens NX. Performed FEA and FMEAs to choose the most efficient materials and finalize a robust design.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">SolidWorks</span>
+                        <span class="tech-tag">Siemens NX</span>
+                        <span class="tech-tag">FEA</span>
+                        <span class="tech-tag">CNC</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <img src="watermelon.jpg" alt="Medieval Crossbow" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">2024</div>
+                    <h3 class="project-title">Medieval Crossbow</h3>
+                    <p class="project-subtitle">Personal Project</p>
+                    <p class="project-description">Created this historically accurate medieval crossbow using carpentry skills. Planed down ash wood for the bow, made bowstring with linen and beeswax. Shoots accurately up to 50 yards, penetrating plywood.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Carpentry</span>
+                        <span class="tech-tag">Historical Crafting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <img src="finish.jpg" alt="Ancient Greek Necklace" class="project-image">
+                <div class="project-content">
+                    <div class="project-date">2025</div>
+                    <h3 class="project-title">Ancient Greek Necklace</h3>
+                    <p class="project-subtitle">Personal Project</p>
+                    <p class="project-description">Created an historically accurate ancient Greek necklace using the same methods. Over one-thousand silver links, each individually formed, annealed, and quenched in acid to change the crystalline structure.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Metalworking</span>
+                        <span class="tech-tag">Metallurgy</span>
+                        <span class="tech-tag">Jewelry Making</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Get In <span style="color: var(--accent);">Touch</span></h2>
+            <p class="section-subtitle">Contact me for collaborations and opportunities. Don't be afraid to reach out.</p>
+
+            <div class="contact-info">
+                <p>Location: <span class="highlight">Portland, OR</span></p>
+                <p>Email: <span class="highlight">david.martin.rappe@gmail.com</span></p>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <input type="text" name="name" placeholder="Your Name" class="form-input" required>
+                <input type="email" name="email" placeholder="Your Email" class="form-input" required>
+                <textarea name="message" placeholder="Your Message" class="form-textarea" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
     <script>
-        // Loading screen
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loadingScreen').classList.add('hidden');
-            }, 500);
-        });
-
-        // Image loading animations
-        const images = document.querySelectorAll('img.loading');
-        images.forEach(img => {
-            img.addEventListener('load', function() {
-                this.classList.remove('loading', 'skeleton');
-                this.classList.add('loaded');
-            });
-            
-            if (img.complete) {
-                img.classList.remove('loading', 'skeleton');
-                img.classList.add('loaded');
-            }
-        });
-
-        // Theme toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement;
-        const themeIcon = themeToggle.querySelector('i');
-
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        if (currentTheme === 'light') {
-            htmlElement.setAttribute('data-theme', 'light');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            if (newTheme === 'light') {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
-
         // Scroll animations
         const observerOptions = {
             root: null,
@@ -1003,107 +728,8 @@
             fadeInObserver.observe(el);
         });
 
-        // Navigation scroll spy
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('main section');
-
-        const navObserverOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.3
-        };
-
-        const navObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('active');
-                    }
-                }
-            });
-        }, navObserverOptions);
-
-        sections.forEach(section => {
-            navObserver.observe(section);
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightboxImage');
-        const lightboxClose = document.getElementById('lightboxClose');
-        const lightboxPrev = document.getElementById('lightboxPrev');
-        const lightboxNext = document.getElementById('lightboxNext');
-        const lightboxImages = document.querySelectorAll('[data-lightbox="true"]');
-        let currentImageIndex = 0;
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            lightboxImage.src = lightboxImages[currentImageIndex].src;
-            lightboxImage.alt = lightboxImages[currentImageIndex].alt;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function showPrevImage() {
-            currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length;
-            lightboxImage.src = lightboxImages[currentImageIndex].src;
-            lightboxImage.alt = lightboxImages[currentImageIndex].alt;
-        }
-
-        function showNextImage() {
-            currentImageIndex = (currentImageIndex + 1) % lightboxImages.length;
-            lightboxImage.src = lightboxImages[currentImageIndex].src;
-            lightboxImage.alt = lightboxImages[currentImageIndex].alt;
-        }
-
-        lightboxImages.forEach((img, index) => {
-            img.addEventListener('click', () => openLightbox(index));
-        });
-
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxPrev.addEventListener('click', showPrevImage);
-        lightboxNext.addEventListener('click', showNextImage);
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            
-            if (e.key === 'Escape') {
-                closeLightbox();
-            } else if (e.key === 'ArrowLeft') {
-                showPrevImage();
-            } else if (e.key === 'ArrowRight') {
-                showNextImage();
-            }
-        });
-
         // Contact form handler
         const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1117,15 +743,18 @@
             const mailtoLink = `mailto:david.martin.rappe@gmail.com?subject=${subject}&body=${body}`;
             
             window.location.href = mailtoLink;
-            
-            formMessage.textContent = 'Opening your email client...';
-            formMessage.className = 'form-message success';
-            formMessage.style.display = 'block';
-            
-            setTimeout(() => {
-                contactForm.reset();
-                formMessage.style.display = 'none';
-            }, 2000);
+            contactForm.reset();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
     </script>
 </body>
