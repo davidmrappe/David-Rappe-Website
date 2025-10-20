@@ -201,8 +201,8 @@
         }
 
         .profile-photo {
-            width: clamp(250px, 40vw, 500px);
-            height: clamp(250px, 40vw, 500px);
+            width: clamp(350px, 50vw, 650px);
+            height: clamp(350px, 50vw, 650px);
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--accent);
@@ -211,21 +211,25 @@
 
         .hero-image {
             position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .gears-container {
             position: absolute;
-            bottom: -40px;
+            bottom: -80px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 2rem;
+            gap: 4rem;
             justify-content: center;
         }
 
         .gear {
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             color: var(--accent);
             animation: rotate 4s linear infinite;
         }
@@ -571,7 +575,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-label">Mechanical Design Engineer</div>
-            <h1 class="hero-title">Hello I'm<br><span class="hero-name">David Rappe</span></h1>
+            <h1 class="hero-title">Hello, I'm<br><span class="hero-name" style="white-space: nowrap;">David Rappe</span></h1>
             <p class="hero-subtitle">Designer of quality machines</p>
             <p class="hero-description">Mechanical engineer specializing in CAD design, GD&T, and continuous improvement. Creating historically accurate medieval crossbows and ancient jewelry using traditional techniques.</p>
             
