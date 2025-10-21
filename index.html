@@ -669,7 +669,7 @@
         .project-images {
             position: relative;
             padding: 0 2rem;
-            height: 300px;
+            height: 450px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -678,18 +678,20 @@
         .image-stack {
             position: relative;
             width: 100%;
-            height: 300px;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .image-stack-item {
             position: absolute;
-            width: 90%;
-            left: 5%;
-            height: 280px;
+            width: 85%;
+            height: 420px;
             transition: all 0.5s ease;
-            cursor: pointer;
             border-radius: 0.5rem;
             overflow: hidden;
+            left: 0;
         }
 
         .image-stack-item img {
@@ -701,42 +703,75 @@
 
         .image-stack-item:nth-child(1) {
             z-index: 3;
-            top: 0;
+            left: 0;
         }
 
         .image-stack-item:nth-child(2) {
             z-index: 2;
-            top: 10px;
+            left: 30px;
             filter: blur(2px);
             opacity: 0.7;
         }
 
         .image-stack-item:nth-child(3) {
             z-index: 1;
-            top: 20px;
+            left: 60px;
             filter: blur(4px);
             opacity: 0.5;
         }
 
         .image-stack-item.active {
             z-index: 3;
-            top: 0;
+            left: 0;
             filter: none;
             opacity: 1;
         }
 
         .image-stack-item.behind-1 {
             z-index: 2;
-            top: 10px;
+            left: 30px;
             filter: blur(2px);
             opacity: 0.7;
         }
 
         .image-stack-item.behind-2 {
             z-index: 1;
-            top: 20px;
+            left: 60px;
             filter: blur(4px);
             opacity: 0.5;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 148, 0.2);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--accent);
+            color: var(--background);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.left {
+            left: -20px;
+        }
+
+        .carousel-arrow.right {
+            right: -20px;
         }
 
         .project-image {
@@ -745,13 +780,13 @@
             object-fit: contain;
             background: var(--card-background);
             transition: filter 0.3s ease;
-            max-height: 300px;
+            max-height: 450px;
         }
 
         .project-video {
-            flex: 1;
+            width: 100%;
             aspect-ratio: 9/16;
-            max-height: 300px;
+            max-height: 450px;
             border-radius: 0.5rem;
             overflow: hidden;
         }
