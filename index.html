@@ -36,6 +36,20 @@
             color: var(--primary-text);
             line-height: 1.6;
             overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor Glow */
+        .cursor-glow {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 148, 0.4), transparent 70%);
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
         }
 
         /* Scroll Gear */
@@ -154,15 +168,10 @@
         .hero-label {
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--primary-text);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 1rem;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 255, 148, 0.1);
-            border-radius: 9999px;
-            border: 1px solid rgba(0, 255, 148, 0.2);
         }
 
         .hero-title {
@@ -209,7 +218,7 @@
             font-size: 1rem;
             font-weight: 600;
             border: none;
-            cursor: pointer;
+            cursor: none;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -231,7 +240,7 @@
             font-size: 1rem;
             font-weight: 600;
             border: 2px solid var(--accent);
-            cursor: pointer;
+            cursor: none;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -289,6 +298,60 @@
             border: 4px solid var(--accent);
             box-shadow: 0 0 40px rgba(0, 255, 148, 0.3);
             animation: glowPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Spinning Rings */
+        .ring-container {
+            position: absolute;
+            width: clamp(380px, 48vw, 580px);
+            height: clamp(380px, 48vw, 580px);
+            z-index: 1;
+        }
+
+        .spinning-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .spinning-ring circle {
+            fill: none;
+            stroke: url(#ringGradient);
+            stroke-width: 3;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 148, 0.4));
+        }
+
+        .ring1 {
+            animation: spinRing1Fast 2s ease-out forwards, spinRing1Slow 40s linear 2s infinite;
+        }
+
+        .ring2 {
+            animation: spinRing2Fast 2s ease-out forwards, spinRing2Slow 30s linear 2s infinite;
+        }
+
+        @keyframes spinRing1Fast {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(1080deg); }
+        }
+
+        @keyframes spinRing1Slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spinRing2Fast {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-1080deg); }
+        }
+
+        @keyframes spinRing2Slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
         }
 
         .stats {
@@ -302,16 +365,6 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 1.5rem;
-            background: var(--card-background);
-            border-radius: 1rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .stat:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
         .stat-number {
@@ -622,6 +675,9 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
     <!-- Scroll Gear -->
     <svg class="scroll-gear" id="scrollGear" viewBox="0 0 24 24">
         <defs>
@@ -650,7 +706,7 @@
             <div class="hero-label">Mechanical Design Engineer</div>
             <h1 class="hero-title">Hello, I'm<br><span class="hero-name" style="white-space: nowrap;">David Rappe</span></h1>
             <p class="hero-subtitle">Designer of quality machines</p>
-            <p class="hero-description">Mechanical engineer specializing in CAD design, GD&T, and continuous improvement. Creating historically accurate medieval crossbows and ancient jewelry using traditional techniques.</p>
+            <p class="hero-description">Mechanical engineer specializing in design, CAD, GD&T, and quality. Creator of historically accurate ancient jewelry and medieval crossbows.</p>
             
             <div class="hero-buttons">
                 <a href="David Rappe - Mechanical Engineer Resume.pdf" download class="btn-primary">
@@ -681,6 +737,20 @@
         </div>
 
         <div class="hero-image">
+            <div class="ring-container">
+                <svg class="spinning-ring ring1" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00ff94;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="97" stroke-dasharray="535 75" stroke-dashoffset="0"/>
+                </svg>
+                <svg class="spinning-ring ring2" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="90" stroke-dasharray="495 70" stroke-dashoffset="37.5"/>
+                </svg>
+            </div>
             <img src="prof.jpg" alt="David Rappe" class="profile-photo">
         </div>
     </section>
@@ -748,7 +818,7 @@
 
         <div class="projects-grid">
             <div class="project-card fade-in">
-                <div class="project-image"></div>
+                <img src="portal-upright-1.jpg" alt="Portal Upright Design" class="project-image">
                 <div class="project-content">
                     <div class="project-date">2021</div>
                     <h3 class="project-title">Portal Uprights</h3>
@@ -764,7 +834,7 @@
             </div>
 
             <div class="project-card fade-in">
-                <div class="project-image"></div>
+                <img src="watermelon.jpg" alt="Medieval Crossbow" class="project-image">
                 <div class="project-content">
                     <div class="project-date">2024</div>
                     <h3 class="project-title">Medieval Crossbow</h3>
@@ -778,7 +848,7 @@
             </div>
 
             <div class="project-card fade-in">
-                <div class="project-image"></div>
+                <img src="finish.jpg" alt="Ancient Greek Necklace" class="project-image">
                 <div class="project-content">
                     <div class="project-date">2025</div>
                     <h3 class="project-title">Ancient Greek Necklace</h3>
@@ -813,6 +883,13 @@
     </section>
 
     <script>
+        // Custom cursor glow
+        const cursorGlow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
         // Scroll gear rotation
         let lastScrollTop = 0;
         const scrollGear = document.getElementById('scrollGear');
