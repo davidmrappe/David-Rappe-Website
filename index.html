@@ -643,9 +643,9 @@
 
         /* Project Cards */
         .projects-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
         .project-card {
@@ -654,9 +654,6 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            max-width: 900px;
-            margin: 0 auto;
-            width: 100%;
         }
 
         .project-card:hover {
@@ -665,12 +662,17 @@
             border-color: var(--accent);
         }
 
+        .project-header {
+            padding: 1.5rem 2rem 1rem 2rem;
+        }
+
         .project-image {
             width: 100%;
             height: auto;
             object-fit: contain;
             background: var(--card-background);
             transition: filter 0.3s ease;
+            max-height: 300px;
         }
 
         .project-card:hover .project-image {
@@ -811,6 +813,10 @@
             nav {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
 
             .stats {
@@ -1009,15 +1015,17 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2 class="section-title">Featured <span style="color: var(--accent);">Projects</span></h2>
-        <p class="section-subtitle">A selection of recent mechanical engineering and personal crafting projects showcasing technical expertise and historical accuracy.</p>
+        <p class="section-subtitle">A showcase of some of my completed projects.</p>
 
         <div class="projects-grid">
             <div class="project-card fade-in">
-                <img src="portal-upright-1.jpg" alt="Portal Upright Design" class="project-image">
-                <div class="project-content">
+                <div class="project-header">
                     <div class="project-date">2021</div>
                     <h3 class="project-title">Portal Uprights</h3>
                     <p class="project-subtitle">OSU Baja</p>
+                </div>
+                <img src="portal-upright-1.jpg" alt="Portal Upright Design" class="project-image">
+                <div class="project-content">
                     <p class="project-description">Designed portal uprights for the OSU Baja off-road car, modeled with SolidWorks and Siemens NX. Performed FEA and FMEAs to choose the most efficient materials and finalize a robust design.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">SolidWorks</span>
@@ -1029,11 +1037,13 @@
             </div>
 
             <div class="project-card fade-in">
-                <img src="watermelon.jpg" alt="Medieval Crossbow" class="project-image">
-                <div class="project-content">
+                <div class="project-header">
                     <div class="project-date">2024</div>
                     <h3 class="project-title">Medieval Crossbow</h3>
                     <p class="project-subtitle">Personal Project</p>
+                </div>
+                <img src="watermelon.jpg" alt="Medieval Crossbow" class="project-image">
+                <div class="project-content">
                     <p class="project-description">Created this historically accurate medieval crossbow using carpentry skills. Planed down ash wood for the bow, made bowstring with linen and beeswax. Shoots accurately up to 50 yards, penetrating plywood.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">Carpentry</span>
@@ -1043,16 +1053,37 @@
             </div>
 
             <div class="project-card fade-in">
-                <img src="finish.jpg" alt="Ancient Greek Necklace" class="project-image">
-                <div class="project-content">
+                <div class="project-header">
                     <div class="project-date">2025</div>
                     <h3 class="project-title">Ancient Greek Necklace</h3>
                     <p class="project-subtitle">Personal Project</p>
+                </div>
+                <img src="finish.jpg" alt="Ancient Greek Necklace" class="project-image">
+                <div class="project-content">
                     <p class="project-description">Created an historically accurate ancient Greek necklace using the same methods. Over one-thousand silver links, each individually formed, annealed, and quenched in acid to change the crystalline structure.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">Metalworking</span>
                         <span class="tech-tag">Metallurgy</span>
                         <span class="tech-tag">Jewelry Making</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-date">2022</div>
+                    <h3 class="project-title">Mechatronic Cat Toy</h3>
+                    <p class="project-subtitle">Educational</p>
+                </div>
+                <div class="project-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));">
+                    <i class="fas fa-cat" style="font-size: 4rem; color: var(--accent);"></i>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">Created robotic cat toy with three phases, depending on how close the cat is. Programmed Arduino and custom-made my own circuit, employing motors and sensors.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">Circuit Design</span>
+                        <span class="tech-tag">Mechatronics</span>
                     </div>
                 </div>
             </div>
