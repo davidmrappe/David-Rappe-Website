@@ -791,10 +791,16 @@
 
         .project-video {
             width: 100%;
-            aspect-ratio: 9/16;
-            max-height: 450px;
+            height: 100%;
             border-radius: 0.5rem;
             overflow: hidden;
+        }
+
+        .project-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--card-background);
         }
 
         .project-video iframe {
@@ -1209,7 +1215,24 @@
                     <h3 class="project-title">Medieval Crossbow</h3>
                     <p class="project-subtitle">Personal Project</p>
                 </div>
-                <img src="watermelon.jpg" alt="Medieval Crossbow" class="project-image">
+                <div class="project-images">
+                    <div class="image-stack" id="imageStackCrossbow">
+                        <div class="carousel-arrow left" onclick="cycleCrossbowImages('prev')">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="image-stack-item active">
+                            <video class="project-video" controls>
+                                <source src="crossbow.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="image-stack-item behind-1">
+                            <img src="watermelon.jpg" alt="Medieval Crossbow">
+                        </div>
+                        <div class="carousel-arrow right" onclick="cycleCrossbowImages('next')">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-content">
                     <p class="project-description">Created this historically accurate medieval crossbow using carpentry skills. Planed down ash wood for the bow, made bowstring with linen and beeswax. Shoots accurately up to 50 yards, penetrating plywood.</p>
                     <div class="tech-tags">
@@ -1225,7 +1248,25 @@
                     <h3 class="project-title">Ancient Greek Necklace</h3>
                     <p class="project-subtitle">Personal Project</p>
                 </div>
-                <img src="finish.jpg" alt="Ancient Greek Necklace" class="project-image">
+                <div class="project-images">
+                    <div class="image-stack" id="imageStackNecklace">
+                        <div class="carousel-arrow left" onclick="cycleNecklaceImages('prev')">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="image-stack-item active">
+                            <img src="finish.jpg" alt="Ancient Greek Necklace - Finished">
+                        </div>
+                        <div class="image-stack-item behind-1">
+                            <img src="start.jpg" alt="Ancient Greek Necklace - Start">
+                        </div>
+                        <div class="image-stack-item behind-2">
+                            <img src="work.jpg" alt="Ancient Greek Necklace - Work in Progress">
+                        </div>
+                        <div class="carousel-arrow right" onclick="cycleNecklaceImages('next')">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-content">
                     <p class="project-description">Created an historically accurate ancient Greek necklace using the same methods. Over one-thousand silver links, each individually formed, annealed, and quenched in acid to change the crystalline structure.</p>
                     <div class="tech-tags">
@@ -1259,7 +1300,71 @@
     <script>
         // Image stack cycling for Portal Uprights
         function cycleImages(direction) {
-            const items = document.querySelectorAll('.image-stack-item');
+            const items = document.querySelectorAll('#imageStack .image-stack-item');
+            const classes = ['active', 'behind-1', 'behind-2'];
+            
+            // Get current classes
+            let currentClasses = [];
+            items.forEach(item => {
+                for (let cls of classes) {
+                    if (item.classList.contains(cls)) {
+                        currentClasses.push(cls);
+                        break;
+                    }
+                }
+            });
+            
+            // Rotate classes based on direction
+            if (direction === 'next') {
+                const lastClass = currentClasses.pop();
+                currentClasses.unshift(lastClass);
+            } else {
+                const firstClass = currentClasses.shift();
+                currentClasses.push(firstClass);
+            }
+            
+            // Apply new classes
+            items.forEach((item, index) => {
+                classes.forEach(cls => item.classList.remove(cls));
+                item.classList.add(currentClasses[index]);
+            });
+        }
+
+        // Image stack cycling for Crossbow
+        function cycleCrossbowImages(direction) {
+            const items = document.querySelectorAll('#imageStackCrossbow .image-stack-item');
+            const classes = ['active', 'behind-1'];
+            
+            // Get current classes
+            let currentClasses = [];
+            items.forEach(item => {
+                for (let cls of classes) {
+                    if (item.classList.contains(cls)) {
+                        currentClasses.push(cls);
+                        break;
+                    }
+                }
+            });
+            
+            // Rotate classes based on direction
+            if (direction === 'next') {
+                const lastClass = currentClasses.pop();
+                currentClasses.unshift(lastClass);
+            } else {
+                const firstClass = currentClasses.shift();
+                currentClasses.push(firstClass);
+            }
+            
+            // Apply new classes
+            items.forEach((item, index) => {
+                classes.forEach(cls => item.classList.remove(cls));
+                item.classList.add(currentClasses[index]);
+            });
+        }
+
+        // Image stack cycling for Necklace
+        function cycleNecklaceImages(direction) {
+            const items = document.querySelectorAll('#imageStackNecklace .image-stack-item');
             const classes = ['active', 'behind-1', 'behind-2'];
             
             // Get current classes
