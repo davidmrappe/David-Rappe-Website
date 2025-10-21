@@ -692,6 +692,7 @@
             border-radius: 0.5rem;
             overflow: hidden;
             left: 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
         .image-stack-item img {
@@ -701,23 +702,25 @@
             background: var(--card-background);
         }
 
-        .image-stack-item:nth-child(1) {
+        .image-stack-item:nth-child(2) {
             z-index: 3;
             left: 0;
         }
 
-        .image-stack-item:nth-child(2) {
+        .image-stack-item:nth-child(3) {
             z-index: 2;
-            left: 30px;
-            filter: blur(2px);
-            opacity: 0.7;
+            left: 60px;
+            filter: blur(3px);
+            opacity: 0.6;
+            transform: scale(0.95);
         }
 
-        .image-stack-item:nth-child(3) {
+        .image-stack-item:nth-child(4) {
             z-index: 1;
-            left: 60px;
-            filter: blur(4px);
-            opacity: 0.5;
+            left: 120px;
+            filter: blur(5px);
+            opacity: 0.4;
+            transform: scale(0.9);
         }
 
         .image-stack-item.active {
@@ -725,20 +728,23 @@
             left: 0;
             filter: none;
             opacity: 1;
+            transform: scale(1);
         }
 
         .image-stack-item.behind-1 {
             z-index: 2;
-            left: 30px;
-            filter: blur(2px);
-            opacity: 0.7;
+            left: 60px;
+            filter: blur(3px);
+            opacity: 0.6;
+            transform: scale(0.95);
         }
 
         .image-stack-item.behind-2 {
             z-index: 1;
-            left: 60px;
-            filter: blur(4px);
-            opacity: 0.5;
+            left: 120px;
+            filter: blur(5px);
+            opacity: 0.4;
+            transform: scale(0.9);
         }
 
         .carousel-arrow {
@@ -748,30 +754,30 @@
             background: rgba(0, 255, 148, 0.2);
             border: 2px solid var(--accent);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            cursor: none;
             z-index: 10;
             transition: all 0.3s ease;
             color: var(--accent);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
         .carousel-arrow:hover {
             background: var(--accent);
             color: var(--background);
-            transform: translateY(-50%) scale(1.1);
+            transform: translateY(-50%) scale(1.15);
         }
 
         .carousel-arrow.left {
-            left: -20px;
+            left: 10px;
         }
 
         .carousel-arrow.right {
-            right: -20px;
+            right: 10px;
         }
 
         .project-image {
@@ -1148,14 +1154,20 @@
                 </div>
                 <div class="project-images">
                     <div class="image-stack" id="imageStack">
-                        <div class="image-stack-item active" onclick="cycleImages()">
+                        <div class="carousel-arrow left" onclick="cycleImages('prev')">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="image-stack-item active">
                             <img src="portal-upright-1.jpg" alt="Portal Upright Design 1">
                         </div>
-                        <div class="image-stack-item behind-1" onclick="cycleImages()">
+                        <div class="image-stack-item behind-1">
                             <img src="portal-upright-2.jpg" alt="Portal Upright Design 2">
                         </div>
-                        <div class="image-stack-item behind-2" onclick="cycleImages()">
+                        <div class="image-stack-item behind-2">
                             <img src="portal-upright-3.jpg" alt="Portal Upright Design 3">
+                        </div>
+                        <div class="carousel-arrow right" onclick="cycleImages('next')">
+                            <i class="fas fa-chevron-right"></i>
                         </div>
                     </div>
                 </div>
@@ -1246,7 +1258,7 @@
 
     <script>
         // Image stack cycling for Portal Uprights
-        function cycleImages() {
+        function cycleImages(direction) {
             const items = document.querySelectorAll('.image-stack-item');
             const classes = ['active', 'behind-1', 'behind-2'];
             
@@ -1261,9 +1273,14 @@
                 }
             });
             
-            // Rotate classes forward
-            const lastClass = currentClasses.pop();
-            currentClasses.unshift(lastClass);
+            // Rotate classes based on direction
+            if (direction === 'next') {
+                const lastClass = currentClasses.pop();
+                currentClasses.unshift(lastClass);
+            } else {
+                const firstClass = currentClasses.shift();
+                currentClasses.push(firstClass);
+            }
             
             // Apply new classes
             items.forEach((item, index) => {
