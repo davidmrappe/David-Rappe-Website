@@ -644,7 +644,7 @@
         /* Project Cards */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
@@ -654,10 +654,6 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .project-card.featured {
-            grid-column: 1 / -1;
         }
 
         .project-card:hover {
@@ -671,9 +667,76 @@
         }
 
         .project-images {
-            display: flex;
-            gap: 1rem;
+            position: relative;
             padding: 0 2rem;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-stack {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .image-stack-item {
+            position: absolute;
+            width: 90%;
+            left: 5%;
+            height: 280px;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .image-stack-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--card-background);
+        }
+
+        .image-stack-item:nth-child(1) {
+            z-index: 3;
+            top: 0;
+        }
+
+        .image-stack-item:nth-child(2) {
+            z-index: 2;
+            top: 10px;
+            filter: blur(2px);
+            opacity: 0.7;
+        }
+
+        .image-stack-item:nth-child(3) {
+            z-index: 1;
+            top: 20px;
+            filter: blur(4px);
+            opacity: 0.5;
+        }
+
+        .image-stack-item.active {
+            z-index: 3;
+            top: 0;
+            filter: none;
+            opacity: 1;
+        }
+
+        .image-stack-item.behind-1 {
+            z-index: 2;
+            top: 10px;
+            filter: blur(2px);
+            opacity: 0.7;
+        }
+
+        .image-stack-item.behind-2 {
+            z-index: 1;
+            top: 20px;
+            filter: blur(4px);
+            opacity: 0.5;
         }
 
         .project-image {
@@ -685,8 +748,18 @@
             max-height: 300px;
         }
 
-        .project-images .project-image {
+        .project-video {
             flex: 1;
+            aspect-ratio: 9/16;
+            max-height: 300px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .project-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .project-card:hover .project-image {
@@ -1032,16 +1105,24 @@
         <p class="section-subtitle">A showcase of some of my completed projects.</p>
 
         <div class="projects-grid">
-            <div class="project-card featured fade-in">
+            <div class="project-card fade-in">
                 <div class="project-header">
                     <div class="project-date">2021</div>
                     <h3 class="project-title">Portal Uprights</h3>
                     <p class="project-subtitle">OSU Baja</p>
                 </div>
                 <div class="project-images">
-                    <img src="portal-upright-1.jpg" alt="Portal Upright Design 1" class="project-image">
-                    <img src="portal-upright-2.jpg" alt="Portal Upright Design 2" class="project-image">
-                    <img src="portal-upright-3.jpg" alt="Portal Upright Design 3" class="project-image">
+                    <div class="image-stack" id="imageStack">
+                        <div class="image-stack-item active" onclick="cycleImages()">
+                            <img src="portal-upright-1.jpg" alt="Portal Upright Design 1">
+                        </div>
+                        <div class="image-stack-item behind-1" onclick="cycleImages()">
+                            <img src="portal-upright-2.jpg" alt="Portal Upright Design 2">
+                        </div>
+                        <div class="image-stack-item behind-2" onclick="cycleImages()">
+                            <img src="portal-upright-3.jpg" alt="Portal Upright Design 3">
+                        </div>
+                    </div>
                 </div>
                 <div class="project-content">
                     <p class="project-description">Designed portal uprights for the OSU Baja off-road car, modeled with SolidWorks and Siemens NX. Performed FEA and FMEAs to choose the most efficient materials and finalize a robust design.</p>
@@ -1050,6 +1131,27 @@
                         <span class="tech-tag">Siemens NX</span>
                         <span class="tech-tag">FEA</span>
                         <span class="tech-tag">CNC</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-date">2021</div>
+                    <h3 class="project-title">Mechatronic Cat Toy</h3>
+                    <p class="project-subtitle">Educational</p>
+                </div>
+                <div class="project-images">
+                    <div class="project-video">
+                        <iframe src="https://www.youtube.com/embed/5GmJx5M2e9E" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">Created robotic cat toy with three phases, depending on how close the cat is. Programmed Arduino and custom-made my own circuit, employing motors and sensors.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">Electrical Engineering</span>
+                        <span class="tech-tag">Mechatronics</span>
                     </div>
                 </div>
             </div>
@@ -1086,25 +1188,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="project-card fade-in">
-                <div class="project-header">
-                    <div class="project-date">2022</div>
-                    <h3 class="project-title">Mechatronic Cat Toy</h3>
-                    <p class="project-subtitle">Educational</p>
-                </div>
-                <div class="project-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));">
-                    <i class="fas fa-cat" style="font-size: 4rem; color: var(--accent);"></i>
-                </div>
-                <div class="project-content">
-                    <p class="project-description">Created robotic cat toy with three phases, depending on how close the cat is. Programmed Arduino and custom-made my own circuit, employing motors and sensors.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Arduino</span>
-                        <span class="tech-tag">Circuit Design</span>
-                        <span class="tech-tag">Mechatronics</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1127,6 +1210,33 @@
     </section>
 
     <script>
+        // Image stack cycling for Portal Uprights
+        function cycleImages() {
+            const items = document.querySelectorAll('.image-stack-item');
+            const classes = ['active', 'behind-1', 'behind-2'];
+            
+            // Get current classes
+            let currentClasses = [];
+            items.forEach(item => {
+                for (let cls of classes) {
+                    if (item.classList.contains(cls)) {
+                        currentClasses.push(cls);
+                        break;
+                    }
+                }
+            });
+            
+            // Rotate classes forward
+            const lastClass = currentClasses.pop();
+            currentClasses.unshift(lastClass);
+            
+            // Apply new classes
+            items.forEach((item, index) => {
+                classes.forEach(cls => item.classList.remove(cls));
+                item.classList.add(currentClasses[index]);
+            });
+        }
+
         // Loading screen
         window.addEventListener('load', () => {
             const loadingScreen = document.getElementById('loadingScreen');
