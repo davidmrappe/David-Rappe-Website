@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-site-verification" content="6MLkmONmsraSgsCpbe00o44amXY-1gQ7al9OufONRk0" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Rappe - Mechanical Engineer</title>
@@ -475,10 +476,20 @@
 
         .ring1 {
             animation: spinRing1Fast 2s ease-out forwards, spinRing1Slow 40s linear 2s infinite;
+            animation-play-state: paused;
         }
 
         .ring2 {
             animation: spinRing2Fast 2s ease-out forwards, spinRing2Slow 30s linear 2s infinite;
+            animation-play-state: paused;
+        }
+
+        .ring1.start-spin {
+            animation-play-state: running;
+        }
+
+        .ring2.start-spin {
+            animation-play-state: running;
         }
 
         @keyframes spinRing1Fast {
@@ -1403,6 +1414,9 @@
                 // Remove from DOM after fade
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
+                    // Start ring animations after loading screen fades
+                    document.querySelector('.ring1').classList.add('start-spin');
+                    document.querySelector('.ring2').classList.add('start-spin');
                 }, 500);
             }, 1400);
         });
